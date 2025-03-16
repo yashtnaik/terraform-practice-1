@@ -30,7 +30,7 @@ resource "aws_instance" "terraform-instance" {
     }
 
     tags = {
-      name = "control-plane"
+      Name = "control-plane"
     }
 
 }
