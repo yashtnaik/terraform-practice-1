@@ -9,3 +9,11 @@ variable "instance_type" {
 variable "key_name" {
     type = string
 }
+
+variable "node_type" {
+    type = string
+}
+
+variable "node_type" {
+    type = string
+}

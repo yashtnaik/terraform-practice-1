@@ -1,3 +1,4 @@
+
 provider "aws" {
     access_key = ""
     secret_key = ""
@@ -8,5 +9,21 @@ resource "aws_instance" "terraform-instance" {
     ami= var.ami
     instance_type = var.instance_type
     key_name = var.key_name
+
+    connection {
+      type = "ssh"
+      private_key = file("key/yashtnaik-instance-3.pem")
+      user = "ec2-user"
+      agent = false
+      host = self.public_ip
+    }
+
+    provisioner "remote-exec" {
+        inline = [ "sudo apt update",
+         "curl -s https://raw.githubusercontent.com/jaintpharsha/install/main/k8s/cluster_setup_using_kubeadm_new.sh",
+         var.node_type ]
+      
+    }
 }
+
 
