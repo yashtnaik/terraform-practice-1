@@ -19,7 +19,7 @@ resource "aws_instance" "terraform-instance" {
     }
 
     provisioner "file" {
-      source      = "k8s_installer.sh "
+      source      = "k8s_installer.sh"
       destination = "/home/k8s_installer.sh"
   }
 
@@ -27,6 +27,10 @@ resource "aws_instance" "terraform-instance" {
         inline = [ "sudo apt update",
          "curl -s https://raw.githubusercontent.com/jaintpharsha/install/main/k8s/cluster_setup_using_kubeadm_new.sh?node_type=${var.node_type} | bash -s" ]
 
+    }
+
+    tags = {
+      name = "control-plane"
     }
 
 }
