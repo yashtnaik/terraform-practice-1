@@ -25,7 +25,7 @@ resource "aws_instance" "terraform-instance" {
 
     provisioner "remote-exec" {
         inline = [ "sudo apt update",
-         "curl -s https://raw.githubusercontent.com/jaintpharsha/install/main/k8s/cluster_setup_using_kubeadm_new.sh?node_type=${var.node_type} | bash -s" ]
+         "sudo bash /home/k8s_installer.sh ${var.node_type}" ]
 
     }
 
