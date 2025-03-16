@@ -19,7 +19,7 @@ resource "aws_instance" "terraform-instance" {
     }
 
     provisioner "file" {
-      source      = "k8s_installer.sh "
+      source      = "k8s_installer.sh"
       destination = "/home/k8s_installer.sh"
   }
 
