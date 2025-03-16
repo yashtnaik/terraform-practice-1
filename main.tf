@@ -20,11 +20,13 @@ resource "aws_instance" "terraform-instance" {
 
     provisioner "file" {
       source      = "k8s_installer.sh"
-      destination = "/home/k8s_installer.sh"
+      destination = "/tmp/k8s_installer.sh"
   }
 
     provisioner "remote-exec" {
         inline = [ "sudo apt update",
+         "sudo mv /tmp/k8s_installer.sh /home/k8s_installer.sh",
+         "sudo chmod +x /home/k8s_installer.sh", 
          "sudo bash /home/k8s_installer.sh ${var.node_type}" ]
 
     }
