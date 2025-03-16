@@ -24,7 +24,8 @@ resource "aws_instance" "terraform-instance" {
   }
 
     provisioner "remote-exec" {
-        inline = [ "sudo apt update",
+        inline = [ "sudo apt update -y",
+         "export DEBIAN_FRONTEND=noninteractive",
          "sudo mv /tmp/k8s_installer.sh /home/k8s_installer.sh",
          "sudo chmod +x /home/k8s_installer.sh", 
          "sudo bash /home/k8s_installer.sh ${var.node_type}" ]
